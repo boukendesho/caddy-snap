@@ -3,3 +3,6 @@
 /stage
 /*.snap
 /squashfs-root
+
+/Caddyfile
+/caddy.json
