@@ -14,7 +14,7 @@ This particular snap has a few key features:
   Core devices, snap config values. Instead of creating a Caddyfile, set the
   JSON corresponding to your desired configuration as a config value via:
 
-	```sh
+	```
   	snap set caddy config='{...}'
 	```
   caddy-wrapper will consume this configuration value and pass that to caddy.
@@ -26,7 +26,7 @@ This particular snap has a few key features:
   implement the caddy-content slot which properly exposes the file hierarchy,
   caddy can access that file tree and serve the content! To do so, run:
 
-	```sh
+	```
 	  snap connect caddy:caddy-content <snap>:caddy-content
 	```
 
@@ -41,14 +41,14 @@ This particular snap has a few key features:
   is the one being used to add and remove modules. Whether the modified caddy
   binary is the one being used or not can be checked (or set) with:
 
-	```sh
+	```
 	  snap get caddy modified
 	```
 
   Modules can be specified by the gadget snap which caddy will fetch on first
   installation via the `default-configure` hook:
 
-	```sh
+	```
 		defaults:
 			<snap ID>:
 				modules: 2
@@ -70,7 +70,7 @@ configuration can be used.
 
 To test the server, run:
 
-```sh
+```
   echo "Hello, world!" | sudo tee -a /var/snap/caddy-dilyn/common/www/index.html
   snap set caddy-dilyn config='{
   "apps": {
@@ -108,7 +108,7 @@ Caddyfile syntax allows, so it can be hard to "know" how to convert from a
 Caddyfile to JSON. Never fear! Caddy includes a way of converting a Caddyfile
 to JSON:
 
-```sh
+```
   caddy adapt Caddyfile | jq
 ```
 
