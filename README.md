@@ -1,5 +1,32 @@
 # Caddy snap
 
+[![caddy](https://snapcraft.io/caddy/badge.svg)](https://snapcraft.io/caddy)
+
+[Caddy Project Link](https://caddyserver.com/) 
+
+Caddy is a Fast and extensible multi-platform HTTP/1-2-3 web server with automatic HTTPS.
+  
+### Authors
+
+This snap is maintained by me, and is not affiliated with the upstream project in any way. If you encounter any issues, please kindly report it here.
+
+[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/caddy)
+
+## Requirements
+
+[Snap installed](https://snapcraft.io/docs/installing-snapd)
+
+## Install
+
+```bash
+$ sudo snap install caddy
+```
+
+## Doc
+
+see: [Official Docs](https://caddyserver.com/docs/)
+
+
 This repository contains the source files for the caddy snap, an
 unofficial snap package for caddy.
 
