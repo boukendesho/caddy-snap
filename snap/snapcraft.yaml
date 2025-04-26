@@ -1,4 +1,4 @@
-name: caddy-dilyn
+name: caddy
 base: core24
 adopt-info: caddy
 summary: Fast, multi-platform web server with automatic HTTPS
@@ -62,12 +62,12 @@ description: |
   Of course, for users opting to use the CLI directly any method for supplying a
   configuration can be used.
 
-grade: devel
-confinement: devmode
+grade: stable
+confinement: strict
 
 # Reach out to me, not caddy. This is unofficial.
-issues: https://github.com/dilyn-corner/caddy-snap/issues
-website: https://github.com/dilyn-corner/caddy-snap/tree/main
+issues: https://github.com/boukendesho/caddy-snap/issues
+website: https://github.com/boukendesho/caddy-snap/tree/main
 license: "Apache-2.0 AND CC-BY-NC-SA-4.0"
 
 # Build for every platform but allow cross-building
@@ -94,8 +94,8 @@ plugs:
   
 
 apps:
-  # caddy-dilyn exposes caddy for e.g. debugging, desktop usage
-  caddy-dilyn:
+  # caddy exposes caddy for e.g. debugging, desktop usage
+  caddy:
     command: usr/bin/caddy-wrapper.sh cli
     plugs: &_plugs [caddy-content, network-bind, removable-media]
     # Caddy likes to store files, it's useful if they persist across revisions

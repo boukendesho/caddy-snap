@@ -1,13 +1,13 @@
 # Caddy snap
 
-This repository contains the source files for the caddy-dilyn snap, an
+This repository contains the source files for the caddy snap, an
 unofficial snap package for caddy.
 
 What distinguishes this snap from other caddy snaps is that it is intended
-primarily for use on Ubuntu Core.
+primarily for use on Ubuntu and Ubuntu Core.
 
 This particular snap has a few key features:
-1) Intended for use on Ubuntu Core
+1) Intended for use on Ubuntu and Ubuntu Core
 
   caddy is setup as a daemon so that Ubuntu Core machines can use it! This means
   that the configuration is intended to be passed in a fashion useful for Ubuntu
@@ -71,8 +71,8 @@ configuration can be used.
 To test the server, run:
 
 ```
-  echo "Hello, world!" | sudo tee -a /var/snap/caddy-dilyn/common/www/index.html
-  snap set caddy-dilyn config='{
+  echo "Hello, world!" | sudo tee -a /var/snap/caddy/common/www/index.html
+  snap set caddy config='{
   "apps": {
     "http": {
       "servers": {
@@ -85,7 +85,7 @@ To test the server, run:
               "handle": [
                 {
                   "handler": "file_server",
-                  "root": "/var/snap/caddy-dilyn/common/www"
+                  "root": "/var/snap/caddy/common/www"
                 }
               ]
             }
@@ -96,7 +96,7 @@ To test the server, run:
   }'
 ```
 
-The configuration file `caddy.json` is handled programmatically by caddy-dilyn's
+The configuration file `caddy.json` is handled programmatically by caddy's
 `configure` hook. As such, directly editing `${SNAP_COMMON}/caddy.json` is
 ill-advised and may result in an inconsistent `caddy.json`.
 
@@ -112,4 +112,4 @@ to JSON:
   caddy adapt Caddyfile | jq
 ```
 
-This will produce a JSON output which can be used to configure caddy-dilyn.
+This will produce a JSON output which can be used to configure caddy.
