@@ -76,8 +76,6 @@ platforms:
   amd64:
   arm64:
   ppc64el:
-    build-on:  [amd64, ppc64el]
-    build-for: [ppc64el]
   riscv64:
   s390x:
 
@@ -124,7 +122,7 @@ parts:
     # ppc is the only architecture we support with a different GOARCH
     build-environment:
       - GOARCH: ${CRAFT_ARCH_BUILD_FOR}
-      - on amd64 to ppc64el:
+      - on ppc64el:
         - GOARCH: ppc64le
     override-build: |
       # Build caddy. Strip the binary to save ~40% on size
