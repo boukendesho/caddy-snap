@@ -1,8 +1,8 @@
 # Caddy snap
-
 [![caddy](https://snapcraft.io/caddy/badge.svg)](https://snapcraft.io/caddy)
 
-[Caddy Project Link](https://caddyserver.com/) 
+## Upstream
+[![caddy](https://img.shields.io/github/v/release/caddyserver/caddy?logo=github)](https://github.com/caddyserver/caddy)
 
 Caddy is a Fast and extensible multi-platform HTTP/1-2-3 web server with automatic HTTPS.
   
