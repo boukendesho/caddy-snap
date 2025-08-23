@@ -111,7 +111,7 @@ parts:
     source: https://github.com/caddyserver/caddy
     source-type: git
     source-depth: 1
-    source-tag: 'v2.10.0'
+    source-tag: 'v2.10.2'
     # latest/edge is required to get `caddy add-package` to function properly
     # `caddy add-package` is useful because it enables extending caddy features
     # Of course, it modifies the caddy binary; there are workarounds implemented
