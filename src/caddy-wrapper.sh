@@ -44,14 +44,15 @@ cli() {
         snapctl set modules=$((mod_count - 1))
       done
 
-     # If no modules are in the list, we've removed all the modules. Go back to
-     # the normal caddy binary
+      # If no modules are in the list, we've removed all the modules. Go back to
+      # the normal caddy binary
       [ "$(snapctl get modules)" -gt 0 ] || {
         snapctl unset modified module
       }
 
-      rm -f "${SNAP_COMMON}/caddy-mod" ;;
-    *) $_caddy "$arg" "$@"             ;;
+      rm -f "${SNAP_COMMON}/caddy-mod"
+    ;;
+    *) $_caddy "$arg" "$@" ;;
   esac
 }
 
