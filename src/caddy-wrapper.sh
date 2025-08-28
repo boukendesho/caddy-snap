@@ -9,6 +9,10 @@ cli() {
     # Users can update caddy with additional plugins or modules at runtime. The
     # caddy binary needs to be mutable in this case.
     add-package)
+      if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
+        caddy add-package --help && exit 0
+      fi
+
       [ -e "${SNAP_COMMON}/caddy-mod" ] || {
         cp -f "${SNAP}/usr/bin/caddy" "${SNAP_COMMON}/caddy-mod"
         _caddy="${SNAP_COMMON}/caddy-mod"
@@ -23,8 +27,14 @@ cli() {
 
         snapctl set modules=$((mod_count + 1))
       done
-      snapctl set modified=true        ;;
+
+      snapctl set modified=true
+    ;;
     remove-package)
+      if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
+        caddy add-package --help && exit 0
+      fi
+
       for mod in "$@"; do
         mod_count="$(snapctl get modules)"
 
