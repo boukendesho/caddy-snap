@@ -57,6 +57,12 @@ run() {
     --pidfile "${SNAP_COMMON}/caddy.pid"
 }
 
+# Must be root to write to $$SNAP_COMMON
+[ "$(id -u)" = 0 ] || {
+  echo "Please run caddy as root!"
+  exit 0
+}
+
 # If the user has modified the caddy binary via modules, use it instead
 _caddy="${SNAP}/usr/bin/caddy"
 [ "$(snapctl get modified)" = "true" ] && _caddy="${SNAP_COMMON}/caddy-mod"
