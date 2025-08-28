@@ -84,6 +84,9 @@ plugs:
     interface: content
     target: "$SNAP/var/www"
 
+hooks:
+  post-refresh:
+    plugs: [network]
 
 apps:
   # caddy exposes caddy for e.g. debugging, desktop usage
