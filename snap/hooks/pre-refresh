@@ -1,0 +1,5 @@
+#!/bin/sh -eux
+
+if [ -e "${SNAP_COMMON}/caddy-mod" ]; then
+  cp -f "${SNAP_COMMON}/caddy-mod" "${SNAP_COMMON}/caddy-mod.bkp"
+fi
