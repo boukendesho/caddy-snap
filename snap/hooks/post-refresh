@@ -1,19 +1,22 @@
 #!/bin/sh -eux
 
-[ "$(snapctl get modified)" = "false" ] || {
-  # Backup the modified caddy binary
-  # It's more important that the caddy binary remains functional with all
-  # modules than that caddy is updated
-  mv -f "${SNAP_COMMON}/caddy-mod" "${SNAP_COMMON}/caddy-mod.bkp"
+[ ! -e "${SNAP_COMMON}/caddy-mod.bkp" ] || {
+  # Put the new caddy binary in "${SNAP_COMMON}"
+  cp -f "${SNAP}/usr/bin/caddy" "${SNAP_COMMON}/caddy-mod"
 
-  snapctl get -l module | while read -r k v; do
-    [ "$k" = "Key" ] ||\
-      if ! "${SNAP_INSTANCE_NAME}.caddy" add-package "$v"; then
-        # Bail on failure.
-        "${SNAP_COMMON}/caddy-mod.bkp" "${SNAP_COMMON}/caddy-mod"
-        # Don't cause refreshes to fail, but notify users something is wrong
-        snapctl set module.update-failed=true
-        break
-    fi
-  done
+  # Rebuild caddy with all prior modules
+  snapctl get module | while read -r k v; do
+    case $k in
+      # Ignore the json braces
+      \{|\}) ;;
+      *) mod="$(echo "$v" | sed -e 's/"//g')"
+         if ! "${SNAP_COMMON}/caddy-mod" add-package "$mod"; then
+           mv -f "${SNAP_COMMON}/caddy-mod.bkp" "${SNAP_COMMON}/caddy-mod"
+           # Bail on failure. Notify user.
+           snapctl set update-failed=true
+           break
+      fi ;;
+    esac
+  # Don't cause refreshes to fail
+  done || mv -f "${SNAP_COMMON}/caddy-mod.bkp" "${SNAP_COMMON}/caddy-mod"
 }
