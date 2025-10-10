@@ -119,7 +119,7 @@ parts:
     # `caddy add-package` is useful because it enables extending caddy features
     # Of course, it modifies the caddy binary; there are workarounds implemented
     # in the scripts and hooks for this :)
-    build-snaps: [go/latest/edge]
+    build-snaps: [go/latest/stable]
     # Use upx for binary compression
     build-packages: [upx-ucl]
     # ppc is the only architecture we support with a different GOARCH
