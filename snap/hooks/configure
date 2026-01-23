@@ -17,6 +17,17 @@ _config=$(snapctl get config)
   snapctl stop --disable "${SNAP_INSTANCE_NAME}.server"
   exit 0
 }
+
+# NOTE: any changes after this point should be related to the state of the caddy
+# service and its associated config file.
+
+# If we get to this point, the service should be started and enabled. The first
+# time this happens, the server will not be configured appropriately. However,
+# by the end of this script everything should be fine. The reason for this is
+# because a service cannot be enabled and started separately; you must do both.
+if snapctl services "${SNAP_INSTANCE_NAME}.server" | grep -q inactive; then
+  snapctl start --enable "${SNAP_INSTANCE_NAME}.launcher" 2>&1 || true
+fi
 echo "$_config" > "${config_file}.new"
 
 # Check if the configuration is different
